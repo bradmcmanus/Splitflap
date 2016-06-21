@@ -55,4 +55,7 @@ public class SplitflapTokens {
 
   /// The minute/second characters (from 00 to 59).
   public static let MinuteAndSecond = (0 ... 59).map { String(format:"%02d", $0) }
+
+  /// From 0 to 71
+  public static let ZeroToSeventyOne = (0 ... 71).map { String(format:"%02d", $0) }
 }
