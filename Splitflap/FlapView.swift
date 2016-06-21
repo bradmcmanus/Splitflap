@@ -165,7 +165,7 @@ final class FlapView: UIView {
       targetCompletionBlock = completionBlock
 
       if !animating {
-        displayNextToken()
+        displayNextToken(token!)
       }
     }
     else {
@@ -181,17 +181,15 @@ final class FlapView: UIView {
   Method used in conjunction with the `animationDidStop:finished:` callback in
   order to display all the tokens between the current one and the target one.
   */
-  private func displayNextToken() {
-    guard tokenGenerator.currentElement != targetToken && targetToken != nil else {
+private func displayNextToken(token: String?) {
+    guard let token = token else {
       targetToken           = nil
       targetCompletionBlock = nil
 
       return
     }
 
-    if let token = tokenGenerator.next() {
-      updateWithToken(token, animated: true)
-    }
+    updateWithToken(token, animated: true)
   }
 
   /// Display the given token. If animated it rotate the flaps.
@@ -231,6 +229,6 @@ final class FlapView: UIView {
   override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
     animationTime = animationTime == .Tic ? .Tac : .Tic
     
-    displayNextToken()
+    displayNextToken(nil)
   }
 }
